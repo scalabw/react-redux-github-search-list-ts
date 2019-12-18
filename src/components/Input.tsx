@@ -1,13 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface IInputProps {
   value: string,
-  onChange: () => {}
+  onSearch: (input: string) => void
 }
 
-const Input = (props: IInputProps) => {
-  const { value, onChange } = props;
+const Input = ({ value, onSearch }: IInputProps) => {
+  const [searchValue, setSearchValue] = useState(value);
+
+  const handleSearch = () => {
+    onSearch(searchValue)
+  }
   return (
-    <input value={value} onChange={onChange}></input>
+    <>
+      <h2>Type a Username or a repository</h2>
+      <input
+        value={searchValue}
+        onChange={e => setSearchValue(e.target.value)}
+        onKeyPress={(e) =>
+          e.key === "Enter" ? handleSearch() : null
+        }
+      />
+      <button onClick={() => handleSearch()}> Search</button>
+    </>
   )
 }
+
+export default Input;
