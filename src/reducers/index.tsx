@@ -1,14 +1,14 @@
 import * as ActionTypes from '../actions'
 
 import { combineReducers } from 'redux'
-import { merge } from 'lodash'
 
+export interface IRepositoryData {
+  users: {}, repos: {}
+}
 
 // Updates an entity cache in response to any action with response.entities.
 const entities = (state = { users: {}, repos: {} }, action: any) => {
-  if (action.response && action.response.entities) {
-    return merge({}, state, action.response.entities)
-  }
+  console.log(action)
 
   return state
 }
