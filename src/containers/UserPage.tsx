@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
+import { Action } from "redux";
 import { LocationState } from "history";
 import { withRouter } from 'react-router';
 import { IRepositoryData } from '../reducers';
 import { getUserProfile } from '../actions';
 import { bindActionCreators, Dispatch } from 'redux';
+import { AxiosResponse } from 'axios';
+import { ThunkDispatch } from 'redux-thunk';
+
+
+type MyRootState = {};
+type MyExtraArg = undefined;
+type MyThunkDispatch = ThunkDispatch<MyRootState, MyExtraArg, Action>;
 
 interface IProps {
-  getUserProfile: (input: string) => void,
+  getUserProfile: (input: string) => Promise<any>,
   match: LocationState,
   users: {}
 }
@@ -17,7 +25,8 @@ const UserPage = (props: IProps) => {
 
   useEffect(() => {
     try {
-      getUserProfile(props.match.params.username).then(response => setUserData(response.data))
+      getUserProfile(props.match.params.username)
+      //.then(response => setUserData(response.data))
     } catch (error) {
       console.error(error)
 
@@ -30,6 +39,6 @@ const UserPage = (props: IProps) => {
   </>
 }
 const mapStateToProps = (state: IRepositoryData) => ({ users: state.users })
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
-  { getUserProfile: (username: string) => getUserProfile(username) }, dispatch)
+const mapDispatchToProps = (dispatch: MyThunkDispatch) =>
+  ({ getUserProfile: (username: string) => dispatch(getUserProfile(username)) })
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserPage));
