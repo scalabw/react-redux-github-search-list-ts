@@ -8,14 +8,14 @@ import { getUserProfile } from '../actions';
 import { bindActionCreators, Dispatch } from 'redux';
 import { AxiosResponse } from 'axios';
 import { ThunkDispatch } from 'redux-thunk';
-
+import { withUserData } from '../helpers/withUserData';
 
 type MyRootState = {};
 type MyExtraArg = undefined;
 type MyThunkDispatch = ThunkDispatch<MyRootState, MyExtraArg, Action>;
 
 interface IProps {
-  getUserProfile: (input: string) => Promise<any>,
+  getUserProfile: any,
   match: LocationState,
   users: {}
 }
@@ -25,7 +25,7 @@ const UserPage = (props: IProps) => {
 
   useEffect(() => {
     try {
-      getUserProfile(props.match.params.username)
+      props.getUserProfile(props.match.params.username)
       //.then(response => setUserData(response.data))
     } catch (error) {
       console.error(error)
