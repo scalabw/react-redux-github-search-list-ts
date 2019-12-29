@@ -1,44 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { connect } from "react-redux";
-import { Action } from "redux";
-import { LocationState } from "history";
 import { withRouter } from 'react-router';
-import { IRepositoryData } from '../reducers';
-import { getUserProfile } from '../actions';
-import { bindActionCreators, Dispatch } from 'redux';
-import { AxiosResponse } from 'axios';
-import { ThunkDispatch } from 'redux-thunk';
+
 import { withUserData } from '../helpers/withUserData';
 
-type MyRootState = {};
-type MyExtraArg = undefined;
-type MyThunkDispatch = ThunkDispatch<MyRootState, MyExtraArg, Action>;
-
 interface IProps {
-  getUserProfile: any,
-  match: LocationState,
-  users: {}
+  users: any
 }
 
 const UserPage = (props: IProps) => {
-  const [userData, setUserData] = useState(props.match.params.username);
-
-  useEffect(() => {
-    try {
-      props.getUserProfile(props.match.params.username)
-      //.then(response => setUserData(response.data))
-    } catch (error) {
-      console.error(error)
-
-    }
-  }, [props.match.params.username])
-
   return <>
     <br />
-    {JSON.stringify(userData)}
+    {JSON.stringify(props.users)}
   </>
 }
-const mapStateToProps = (state: IRepositoryData) => ({ users: state.users })
-const mapDispatchToProps = (dispatch: MyThunkDispatch) =>
-  ({ getUserProfile: (username: string) => dispatch(getUserProfile(username)) })
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserPage));
+const mapStateToProps = (state: any) => ({ users: state.entities.users })
+export default withUserData(withRouter(connect(mapStateToProps)(UserPage)));

@@ -13,12 +13,12 @@ const entities = (state: IRepositoryData = { users: {}, repos: {}, error: {} }, 
     case ActionTypes.USER_REQUEST:
       return {
         ...state,
-        error: action
+        error: action.data
       };
     case ActionTypes.USER_SUCCESS:
       return {
         ...state,
-        users: action
+        users: action.data
       };
     case ActionTypes.USER_FAILURE:
       return {

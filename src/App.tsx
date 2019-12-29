@@ -6,6 +6,7 @@ import Root from './containers/Root';
 
 const store = configureStore();
 
+// TODO: Remove all "any"
 const App: React.FC = () => {
   return (
     <div className="App">

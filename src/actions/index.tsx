@@ -1,9 +1,7 @@
 import { Dispatch } from "redux";
-
-import * as APICalls from "../API";
-import { API_RESPONSE } from "../API/api_common";
 import Axios from "axios";
 
+//TODO: place constants in folder constants
 export const USER_REQUEST = 'USER_REQUEST'
 export const USER_SUCCESS = 'USER_SUCCESS'
 export const USER_FAILURE = 'USER_FAILURE'
@@ -17,9 +15,10 @@ export const getUserProfile = (username: string) => {
   // TODO: create clear dipatch type here
   return (dispatch: Dispatch) => {
     dispatch(request(username));
+    //TODO: improve error handling here
     Axios.get('https://api.github.com/users/' + username).then((response => dispatch({ type: USER_SUCCESS, data: response.data }))).catch(error => dispatch({ type: USER_FAILURE, data: error }))
     // console.log(response)
-    //return response
+    // return response
   }
 }
 
