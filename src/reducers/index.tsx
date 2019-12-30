@@ -3,27 +3,29 @@ import * as ActionTypes from '../actions'
 import { combineReducers } from 'redux'
 
 export interface IRepositoryData {
-  users: {}, repos: {}, error: {}
+  user: {}, repos: {}, error: {}, loading: boolean
 }
 
 // Updates an entity cache in response to any action with response.entities.
-const entities = (state: IRepositoryData = { users: {}, repos: {}, error: {} }, action: any): IRepositoryData => {
+const entities = (state: IRepositoryData = { user: {}, repos: {}, error: {}, loading: false }, action: any): IRepositoryData => {
   switch (action.type) {
     // GET USER DATA
     case ActionTypes.USER_REQUEST:
       return {
         ...state,
-        error: action.data
+        loading: true,
       };
     case ActionTypes.USER_SUCCESS:
       return {
         ...state,
-        users: action.data
+        user: action.data,
+        loading: false
       };
     case ActionTypes.USER_FAILURE:
       return {
         ...state,
-        users: {}
+        user: {},
+        loading: false
       };
 
     default:
