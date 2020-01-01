@@ -1,8 +1,14 @@
 .App {
+}
+
+.BoxContainer {
+  max-width: 100%;
+}
+
+.CenterItem {
   text-align: center;
 }
 
 .AvatarImg {
   height: 18vmin;
-  pointer-events: none;
 }

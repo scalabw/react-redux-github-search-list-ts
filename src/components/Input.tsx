@@ -12,8 +12,8 @@ const Input = ({ value, onSearch }: IInputProps) => {
     onSearch(searchValue)
   }
   return (
-    <>
-      <h2>Type a Username or a repository</h2>
+    <div className="CenterItem">
+      <h2>Type a Username</h2>
       <input
         value={searchValue}
         onChange={e => setSearchValue(e.target.value)}
@@ -22,7 +22,7 @@ const Input = ({ value, onSearch }: IInputProps) => {
         }
       />
       <button onClick={() => handleSearch()}> Search</button>
-    </>
+    </div>
   )
 }
 
