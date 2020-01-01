@@ -8,13 +8,8 @@ export const USER_FAILURE = 'USER_FAILURE'
 
 // Get user Profile Data
 export const getUserProfile = (username: string) => {
-
-  const request = (username: string) => {
-    return { type: USER_REQUEST, username };
-  };
-  // TODO: create clear dipatch type here
   return (dispatch: Dispatch) => {
-    dispatch(request(username));
+    dispatch({ type: USER_REQUEST, username });
     //TODO: improve error handling here
     Axios.get('https://api.github.com/users/' + username).then((response => dispatch({ type: USER_SUCCESS, data: response.data }))).catch(error => dispatch({ type: USER_FAILURE, data: error }))
     // console.log(response)
