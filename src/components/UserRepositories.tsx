@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, CardHeader, CardBody, Button, ButtonGroup } from "shards-react"
+import { Card, CardHeader, CardBody, Button } from "shards-react"
 import Loader from 'react-loader-spinner'
 
 import { IRepositorie } from '../constants/userConstants';

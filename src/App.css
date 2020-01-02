@@ -16,3 +16,7 @@
 .PaginationButton {
   width: 4vmin
 }
+
+.Inline {
+  display: inline-block;
+}

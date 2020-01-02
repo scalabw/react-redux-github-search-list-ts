@@ -15,21 +15,17 @@ const Input = ({ value, onSearch }: IInputProps) => {
   return (
     <div className="CenterItem">
       <h2 >Type a Username</h2>
-      <Container >
-        <Row >
-          <Col >
-            <FormInput
-              value={searchValue}
-              onChange={e => setSearchValue(e.target.value)}
-              onKeyPress={(e) =>
-                e.key === "Enter" ? handleSearch() : null
-              }
 
-            />
-          </Col>
-          <Col><Button onClick={() => handleSearch()} theme="secondary"> Search</Button></Col>
-        </Row>
-      </Container>
+      <FormInput
+        className="Inline w-25 pt-0 mr-2"
+        value={searchValue}
+        onChange={e => setSearchValue(e.target.value)}
+        onKeyPress={(e) =>
+          e.key === "Enter" ? handleSearch() : null
+        }
+      />
+      <Button onClick={() => handleSearch()} theme="secondary"
+        className="Inline ">Search</Button>
 
     </div>
   )
