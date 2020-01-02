@@ -20,7 +20,6 @@ const ResultPage = (props: IProps) => {
   const { user, repositories, loading } = props;
 
   return <>
-
     {loading ?
       <Loader type="MutatingDots" color="#000000"
         height={100}
@@ -31,7 +30,7 @@ const ResultPage = (props: IProps) => {
         <>
           <Container className="mt-2 BoxContainer">
             <Row>
-              <Col sm="12" md="4" lg="2">
+              <Col sm="12" md="4" lg="2" >
                 <UserProfile user={user} loading={loading} />
               </Col>
               <Col sm="12" md="8" lg="10">

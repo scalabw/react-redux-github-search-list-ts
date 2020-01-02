@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FormInput, Container, Row, Col, Button } from "shards-react";
 
 interface IInputProps {
   value: string,
@@ -13,15 +14,23 @@ const Input = ({ value, onSearch }: IInputProps) => {
   }
   return (
     <div className="CenterItem">
-      <h2>Type a Username</h2>
-      <input
-        value={searchValue}
-        onChange={e => setSearchValue(e.target.value)}
-        onKeyPress={(e) =>
-          e.key === "Enter" ? handleSearch() : null
-        }
-      />
-      <button onClick={() => handleSearch()}> Search</button>
+      <h2 >Type a Username</h2>
+      <Container >
+        <Row >
+          <Col >
+            <FormInput
+              value={searchValue}
+              onChange={e => setSearchValue(e.target.value)}
+              onKeyPress={(e) =>
+                e.key === "Enter" ? handleSearch() : null
+              }
+
+            />
+          </Col>
+          <Col><Button onClick={() => handleSearch()} theme="secondary"> Search</Button></Col>
+        </Row>
+      </Container>
+
     </div>
   )
 }
