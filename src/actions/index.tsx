@@ -21,6 +21,6 @@ export const GET_USER_REPOSITORIES_FAILURE = "GET_USER_REPOSITORIES_FAILURE"
 export const getUserRepositories = (username: string) => {
   return (dispatch: Dispatch) => {
     dispatch({ type: GET_USER_REPOSITORIES_REQUEST, username });
-    Axios.get('https://api.github.com/users/' + username + "/repos").then((response => dispatch({ type: GET_USER_REPOSITORIES_SUCCESS, data: response.data }))).catch(error => dispatch({ type: GET_USER_REPOSITORIES_FAILURE, data: error }))
+    Axios.get('https://api.github.com/users/' + username + "/repos?per_page=1000").then((response => dispatch({ type: GET_USER_REPOSITORIES_SUCCESS, data: response.data }))).catch(error => dispatch({ type: GET_USER_REPOSITORIES_FAILURE, data: error }))
   }
 }

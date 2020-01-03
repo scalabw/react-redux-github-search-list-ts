@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardBody, Button } from "shards-react"
 import Loader from 'react-loader-spinner'
-
+import ForkLogo from "../images/fork-icon.png";
+// import WatchersLogo from "../images/watchers-icon.png";
 import { IRepositorie } from '../constants/userConstants';
 
 interface IProps {
@@ -26,7 +27,8 @@ const UserRepositories = (props: IProps) => {
     pageNumbers.push(i);
   }
 
-  const handleClick = (event) => {
+  // Handle the Click on a Page Number
+  const handlePageNumberClick = (event) => {
     setCurrentPage(Number(event.target.id))
   }
 
@@ -38,16 +40,24 @@ const UserRepositories = (props: IProps) => {
       <CardBody>
         {respository.description && <h5> Description </h5>}
         <p>{respository.description}</p>
+        {respository.language && <h5> Language </h5>}
+        <p>{respository.language}</p>
+        {<span className="Inline" role="img" aria-label="github-stars"> ⭐: &nbsp;</span>}
+        <p className="Inline mr-2">{respository.stargazers_count}</p>
+        {<img className="Inline ForkLogo" src={ForkLogo} alt="forkIcon" />}
+        <p className="Inline mr-2">&nbsp;:&nbsp;{respository.forks}</p>
+        {/* {<img className="Inline WatchersLogo" src={WatchersLogo} alt="watchersIcon" />}
+        <p className="Inline mr-2">&nbsp;:&nbsp;{respository.watchers_count}</p> */}
       </CardBody>
     </Card>)
 
-  const renderPageNumbers = pageNumbers.map(number => {
+  const renderPageNumbers = pageNumbers.map((number: number) => {
     return (
-      <Button className="mr-2 PaginationButton"
+      <Button className="mr-2 mt-2 PaginationButton"
         key={number}
         id={number.toString()}
-        onClick={handleClick}
-        theme="secondary"
+        onClick={handlePageNumberClick}
+        theme={number === currentPage ? "dark" : "secondary"}
       >
         {number}
       </Button>

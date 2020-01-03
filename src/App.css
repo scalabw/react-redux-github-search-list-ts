@@ -14,9 +14,18 @@
 }
 
 .PaginationButton {
-  width: 4vmin
+  width: 4.2vmin
 }
 
 .Inline {
   display: inline-block;
+}
+
+.ForkLogo {
+  width: 0.95vmin
+}
+
+.WatchersLogo {
+  width: 1.35vmin;
+  padding-bottom: 0.2vmin
 }
