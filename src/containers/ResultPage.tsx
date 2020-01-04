@@ -23,7 +23,9 @@ const ResultPage = (props: IProps) => {
     {loading ?
       <Loader type="MutatingDots" color="#000000"
         height={100}
-        width={100} /> : Object.keys(user).length === 0 ?
+        width={100}
+        className="CenterItem MiddleHeight"
+      /> : Object.keys(user).length === 0 ?
         <Card> <CardHeader>
           No User Found
           </CardHeader></Card > :
@@ -36,7 +38,6 @@ const ResultPage = (props: IProps) => {
               <Col sm="12" md="8" lg="10">
                 <UserRepositories repositories={repositories} loading={loading} />
               </Col>
-
             </Row>
           </Container>
 

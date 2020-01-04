@@ -64,7 +64,6 @@ const UserRepositories = (props: IProps) => {
     );
   });
 
-  console.log(repositories)
   return <>
     {loading ?
       <Loader type="MutatingDots" color="#000000"

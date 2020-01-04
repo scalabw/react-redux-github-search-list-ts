@@ -12,6 +12,7 @@ const Input = ({ value, onSearch }: IInputProps) => {
   const handleSearch = () => {
     onSearch(searchValue)
   }
+
   return (
     <div className="CenterItem">
       <h2 >Type a Username</h2>
@@ -26,7 +27,6 @@ const Input = ({ value, onSearch }: IInputProps) => {
       />
       <Button onClick={() => handleSearch()} theme="secondary"
         className="Inline ">Search</Button>
-
     </div>
   )
 }
