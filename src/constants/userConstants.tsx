@@ -32,7 +32,7 @@ export interface IUser {
   updated_at: Date,
 }
 
-export interface IRepositorie {
+export interface IRepository {
   id: number,
   node_id: string,
   name: string,

@@ -3,10 +3,10 @@ import { Card, CardHeader, CardBody, Button } from "shards-react"
 import Loader from 'react-loader-spinner'
 import ForkLogo from "../images/fork-icon.png";
 // import WatchersLogo from "../images/watchers-icon.png";
-import { IRepositorie } from '../constants/userConstants';
+import { IRepository } from '../constants/userConstants';
 
 interface IProps {
-  repositories: IRepositorie[],
+  repositories: IRepository[],
   loading: boolean
 }
 
@@ -32,7 +32,7 @@ const UserRepositories = (props: IProps) => {
     setCurrentPage(Number(event.target.id))
   }
 
-  const renderRepositories = currentRepositories.map((respository: IRepositorie, index: number) =>
+  const renderRepositories = currentRepositories.map((respository: IRepository, index: number) =>
     <Card key={respository.id} className="mt-2">
       <CardHeader>
         <h2>{respository.name}</h2>

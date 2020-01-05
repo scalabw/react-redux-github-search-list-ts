@@ -1,13 +1,13 @@
 import * as ActionTypes from '../actions'
 
-import { combineReducers } from 'redux'
+import { IUser, IRepository } from '../constants/userConstants';
 
-export interface IRepositoryData {
-  user: {}, repos: {}, error: {}, loading: boolean
+export interface IEntitiesData {
+  user?: IUser, repositories?: IRepository[], error: {}, loading: boolean
 }
 
 // Updates an entity cache in response to any action with response.entities.
-const entities = (state: IRepositoryData = { user: {}, repos: {}, error: {}, loading: false }, action: any): IRepositoryData => {
+const entities = (state: IEntitiesData = { user: undefined, repositories: undefined, error: {}, loading: false }, action: any): IEntitiesData => {
   switch (action.type) {
     // GET USER PROFILE DATA
     case ActionTypes.GET_USER_PROFILE_DATA_REQUEST:
@@ -24,7 +24,7 @@ const entities = (state: IRepositoryData = { user: {}, repos: {}, error: {}, loa
     case ActionTypes.GET_USER_PROFILE_DATA_FAILURE:
       return {
         ...state,
-        user: {},
+        user: undefined,
         loading: false
       };
     // GET USER REPOSITORIES DATA
@@ -36,13 +36,13 @@ const entities = (state: IRepositoryData = { user: {}, repos: {}, error: {}, loa
     case ActionTypes.GET_USER_REPOSITORIES_SUCCESS:
       return {
         ...state,
-        repos: action.data,
+        repositories: action.data,
         loading: false
       };
     case ActionTypes.GET_USER_REPOSITORIES_FAILURE:
       return {
         ...state,
-        repos: {},
+        repositories: undefined,
         loading: false
       };
 
@@ -51,22 +51,4 @@ const entities = (state: IRepositoryData = { user: {}, repos: {}, error: {}, loa
   }
 }
 
-// Updates error message to notify about the failed fetches.
-// const errorMessage = (state = null, action: any) => {
-//   const { type, error } = action
-//   console.log(action)
-//   if (type === ActionTypes.RESET_ERROR_MESSAGE) {
-//     return null
-//   } else if (error) {
-//     return error
-//   }
-//   return state
-// }
-
-
-const rootReducer = combineReducers({
-  entities,
-  //  errorMessage,
-})
-
-export default rootReducer
+export default entities
