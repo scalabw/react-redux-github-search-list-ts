@@ -1,19 +1,30 @@
-import { ActionsTypes } from '../constants/actionsConstants'
+import { ActionsTypes } from "../constants/actionsConstants";
 
-import { IUser, IRepository } from '../constants/userConstants';
+import { IUser, IRepository } from "../constants/userConstants";
 
 export interface IEntitiesData {
-  user?: IUser, repositories?: IRepository[], error: {}, loading: boolean
+  user?: IUser;
+  repositories?: IRepository[];
+  error: {};
+  loading: boolean;
 }
 
 // Updates an entity cache in response to any action with response.entities.
-const entities = (state: IEntitiesData = { user: undefined, repositories: undefined, error: {}, loading: false }, action: any): IEntitiesData => {
+const entities = (
+  state: IEntitiesData = {
+    user: undefined,
+    repositories: undefined,
+    error: {},
+    loading: false
+  },
+  action: any
+): IEntitiesData => {
   switch (action.type) {
     // GET USER PROFILE DATA
     case ActionsTypes.GET_USER_PROFILE_DATA_REQUEST:
       return {
         ...state,
-        loading: true,
+        loading: true
       };
     case ActionsTypes.GET_USER_PROFILE_DATA_SUCCESS:
       return {
@@ -31,7 +42,7 @@ const entities = (state: IEntitiesData = { user: undefined, repositories: undefi
     case ActionsTypes.GET_USER_REPOSITORIES_REQUEST:
       return {
         ...state,
-        loading: true,
+        loading: true
       };
     case ActionsTypes.GET_USER_REPOSITORIES_SUCCESS:
       return {
@@ -47,8 +58,8 @@ const entities = (state: IEntitiesData = { user: undefined, repositories: undefi
       };
 
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default entities
+export default entities;

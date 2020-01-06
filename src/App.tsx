@@ -1,13 +1,12 @@
-import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom'
-import configureStore from "./store/configureStore"
-import Root from './containers/Root';
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import configureStore from "./store/configureStore";
+import Root from "./containers/Root";
 
 // Import CSS
 import "shards-ui/dist/css/shards.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import './App.css';
-
+import "./App.css";
 
 const store = configureStore();
 
@@ -20,6 +19,6 @@ const App: React.FC = () => {
       </Router>
     </div>
   );
-}
+};
 
 export default App;

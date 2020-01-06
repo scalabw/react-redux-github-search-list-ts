@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { getUserProfile } from "../actions";
 
 export const withUserData = (Component: any) => {
-  //TODO: add precise type here 
+  //TODO: add precise type here
   return (props: any) => {
     const dispatch = useDispatch();
     useEffect(() => {
