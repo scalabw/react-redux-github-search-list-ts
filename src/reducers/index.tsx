@@ -1,4 +1,4 @@
-import * as ActionTypes from '../actions'
+import { ActionsTypes } from '../constants/actionsConstants'
 
 import { IUser, IRepository } from '../constants/userConstants';
 
@@ -10,36 +10,36 @@ export interface IEntitiesData {
 const entities = (state: IEntitiesData = { user: undefined, repositories: undefined, error: {}, loading: false }, action: any): IEntitiesData => {
   switch (action.type) {
     // GET USER PROFILE DATA
-    case ActionTypes.GET_USER_PROFILE_DATA_REQUEST:
+    case ActionsTypes.GET_USER_PROFILE_DATA_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case ActionTypes.GET_USER_PROFILE_DATA_SUCCESS:
+    case ActionsTypes.GET_USER_PROFILE_DATA_SUCCESS:
       return {
         ...state,
         user: action.data,
         loading: false
       };
-    case ActionTypes.GET_USER_PROFILE_DATA_FAILURE:
+    case ActionsTypes.GET_USER_PROFILE_DATA_FAILURE:
       return {
         ...state,
         user: undefined,
         loading: false
       };
     // GET USER REPOSITORIES DATA
-    case ActionTypes.GET_USER_REPOSITORIES_REQUEST:
+    case ActionsTypes.GET_USER_REPOSITORIES_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case ActionTypes.GET_USER_REPOSITORIES_SUCCESS:
+    case ActionsTypes.GET_USER_REPOSITORIES_SUCCESS:
       return {
         ...state,
         repositories: action.data,
         loading: false
       };
-    case ActionTypes.GET_USER_REPOSITORIES_FAILURE:
+    case ActionsTypes.GET_USER_REPOSITORIES_FAILURE:
       return {
         ...state,
         repositories: undefined,
