@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { Card, CardHeader, CardBody, Button } from "shards-react";
+import { Card, CardHeader, CardBody } from "shards-react";
 import Loader from "react-loader-spinner";
 import ForkLogo from "../images/fork-icon.png";
 import { IRepository } from "../constants/userConstants";
+import PageNumbers from "./PageNumbers";
+import { todosPerPage } from "../constants/repositoriesConstants";
 
 interface IProps {
   repositories: IRepository[];
   loading: boolean;
 }
-
-const todosPerPage = 5;
 
 const UserRepositories = (props: IProps) => {
   const { repositories, loading } = props;
@@ -22,17 +22,6 @@ const UserRepositories = (props: IProps) => {
     Object.keys(repositories).length > 0
       ? repositories.slice(indexOfFirstTodo, indexOfLastTodo)
       : [];
-
-  // Logic for displaying page numbers
-  const pageNumbers: number[] = [];
-  for (let i = 1; i <= Math.ceil(repositories.length / todosPerPage); i++) {
-    pageNumbers.push(i);
-  }
-
-  // Handle the Click on a Page Number
-  const handlePageNumberClick = event => {
-    setCurrentPage(Number(event.target.id));
-  };
 
   const renderRepositories = currentRepositories.map(
     (respository: IRepository) => (
@@ -58,20 +47,6 @@ const UserRepositories = (props: IProps) => {
     )
   );
 
-  const renderPageNumbers = pageNumbers.map((number: number) => {
-    return (
-      <Button
-        className="mr-2 mt-2 PaginationButton"
-        key={number}
-        id={number.toString()}
-        onClick={handlePageNumberClick}
-        theme={number === currentPage ? "dark" : "secondary"}
-      >
-        {number}
-      </Button>
-    );
-  });
-
   return (
     <>
       {loading ? (
@@ -85,7 +60,15 @@ const UserRepositories = (props: IProps) => {
         <Card>
           <CardBody>
             {renderRepositories}
-            <div className="CenterItem mt-2">{renderPageNumbers}</div>
+            <div className="CenterItem mt-2">
+              <PageNumbers
+                currentPage={currentPage}
+                repositoriesNumber={repositories.length}
+                handlePageNumberClick={event =>
+                  setCurrentPage(Number(event.target.id))
+                }
+              />
+            </div>
           </CardBody>
         </Card>
       )}
