@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Card, CardHeader, CardBody, Button } from "shards-react";
 import Loader from "react-loader-spinner";
 import ForkLogo from "../images/fork-icon.png";
-// import WatchersLogo from "../images/watchers-icon.png";
 import { IRepository } from "../constants/userConstants";
 
 interface IProps {
@@ -36,7 +35,7 @@ const UserRepositories = (props: IProps) => {
   };
 
   const renderRepositories = currentRepositories.map(
-    (respository: IRepository, index: number) => (
+    (respository: IRepository) => (
       <Card key={respository.id} className="mt-2">
         <CardHeader>
           <h2>{respository.name}</h2>
@@ -54,8 +53,6 @@ const UserRepositories = (props: IProps) => {
           <p className="Inline mr-2">{respository.stargazers_count}</p>
           {<img className="Inline ForkLogo" src={ForkLogo} alt="forkIcon" />}
           <p className="Inline mr-2">&nbsp;:&nbsp;{respository.forks}</p>
-          {/* {<img className="Inline WatchersLogo" src={WatchersLogo} alt="watchersIcon" />}
-        <p className="Inline mr-2">&nbsp;:&nbsp;{respository.watchers_count}</p> */}
         </CardBody>
       </Card>
     )
